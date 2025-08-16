@@ -18,9 +18,9 @@
     },
     "content_scripts": [
         {
-            "js": ["scripts/config.js", "scripts/content.js"],
+            "js": ["scripts/config.js", "scripts/premium-elements.js"],
             "matches": [
-                "https://www.canva.com/*"
+                "https://www.canva.com/design/*"
             ],
             "run_at": "document_start"
         }
