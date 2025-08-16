@@ -18,7 +18,11 @@
     },
     "content_scripts": [
         {
-            "js": ["scripts/config.js", "scripts/premium-elements.js"],
+            "js": [
+                "scripts/config.js",
+                "scripts/premium-elements.js",
+                "scripts/hide-pro-trial.js"
+            ],
             "matches": [
                 "https://www.canva.com/design/*"
             ],
