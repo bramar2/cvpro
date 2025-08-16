@@ -1,4 +1,4 @@
-chrome.storage.sync.get({"config-premium-elements": DEFAULT_CONFIG["config-premium-elements"]}, (config) => {
+chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["config-premium-elements"]}, (config) => {
     if(!config["config-premium-elements"]) return;
     document.addEventListener("click", (e) => {
         const target = e.target;
