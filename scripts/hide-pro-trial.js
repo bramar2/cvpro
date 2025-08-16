@@ -4,6 +4,7 @@ function delBtn() {
     }
 }
 chrome.storage.sync.get({"config-hide-pro-trial": ___cvp.getDefaultConfig()["config-hide-pro-trial"]}, (config) => {
+    if(!config["config-hide-pro-trial"]) return;
     document.addEventListener('DOMContentLoaded', (e) => {
         delBtn();
         setTimeout(delBtn, 1000);
