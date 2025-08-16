@@ -1,5 +1,32 @@
 <html lang="en">
+    <head>
+        <style>
+            body {
+                width: 200px;
+                height: 200px;
+                background-color: #2a2a2a;
+                display: flex;
+            }
+            .option > span {
+                font-family: 'Courier New', Courier, monospace;
+                color: white;
+            }
+
+            .option {
+                width: 200px;
+                height: 60px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+        </style>
+        <script src="action-page.js"></script>
+    </head>
+
     <body>
-        <h1>Hello World</h1>
+        <div class="option">
+            <input type="checkbox" id="config-premium-elements"/>
+            <span>Premium elements</span>
+        </div>
     </body>
 </html>

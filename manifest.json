@@ -12,5 +12,14 @@
     "action": {
       "default_popup": "pages/action_page.html",
       "default_icon": "images/icon-16.png"
-    }
+    },
+    "content_scripts": [
+        {
+            "js": ["scripts/content.js"],
+            "matches": [
+                "https://www.canva.com/*"
+            ],
+            "run_at": "document_start"
+        }
+    ]
   }
