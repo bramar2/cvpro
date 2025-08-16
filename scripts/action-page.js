@@ -1,3 +1,4 @@
+
 function saveSettings() {
     let config = {};
     for(const input of document.querySelectorAll('.option > input')) {
@@ -7,9 +8,7 @@ function saveSettings() {
 }
 
 function loadSettings() {
-    const DEFAULT_CONFIG = {
-        "config-premium-elements": true
-    };
+    const DEFAULT_CONFIG = ___cvp.getDefaultConfig();
     chrome.storage.sync.get(DEFAULT_CONFIG, (config) => {
         for(const key of Object.keys(DEFAULT_CONFIG)) {
             const element = document.getElementById(key);
