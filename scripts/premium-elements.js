@@ -61,6 +61,7 @@ chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["c
         pasteImg(img, (e) => {
             if(___cvp.pasteImmediately === true) {
                 document.dispatchEvent(e);
+                ___cvp.pasteImmediately = false;
             }else {
                 ___cvp.pasteEvent = e;
             }
@@ -78,11 +79,13 @@ chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["c
         }else {
             document.dispatchEvent(___cvp.pasteEvent);
             ___cvp.pasteEvent = undefined;
+            ___cvp.pasteImmediately = false;
         }
     });
     document.addEventListener("dragend", (e) => {
         ___cvp.dragged = undefined;
         ___cvp.pasteEvent = undefined;
+        ___cvp.pasteImmediately = false;
     });
     document.addEventListener("click", (e) => {
         const target = e.target;
