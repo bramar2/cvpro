@@ -3,6 +3,9 @@
     "description": "Unlock pro features.",
     "version": "1.0",
     "manifest_version": 3,
+    "permissions": [
+        "storage"
+    ],
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
@@ -10,7 +13,7 @@
         "128": "images/icon-128.png"
     },
     "action": {
-      "default_popup": "pages/action_page.html",
+      "default_popup": "pages/action-page.html",
       "default_icon": "images/icon-16.png"
     },
     "content_scripts": [
