@@ -20,7 +20,7 @@ function premiumImg(parent) {
     return img;
 }
 
-function pasteImg(img) {
+function pasteImg(img, callback) {
     const canvas = document.createElement("canvas");
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
@@ -46,8 +46,9 @@ function pasteImg(img) {
             cancelable: true,
             clipboardData: dataTransfer,
         });
-        document.dispatchEvent(pasteEvent);
+        callback(pasteEvent);
     }, "image/png", 1);
+    canvas.remove();
 }
 
 chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["config-premium-elements"]}, (config) => {
@@ -57,6 +58,13 @@ chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["c
         const img = premiumImg(target.children[0]);
         if(img === undefined) return;
         ___cvp.dragged = img;
+        pasteImg(img, (e) => {
+            if(___cvp.pasteImmediately === true) {
+                document.dispatchEvent(e);
+            }else {
+                ___cvp.pasteEvent = e;
+            }
+        });
     });
     document.addEventListener("drop", (e) => {
         const img = ___cvp.dragged;
@@ -64,11 +72,17 @@ chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["c
         
         e.stopImmediatePropagation();
         e.stopPropagation();
-
-        pasteImg(img);
+        
+        if(___cvp.pasteEvent === undefined) {
+            ___cvp.pasteImmediately = true;
+        }else {
+            document.dispatchEvent(___cvp.pasteEvent);
+            ___cvp.pasteEvent = undefined;
+        }
     });
     document.addEventListener("dragend", (e) => {
         ___cvp.dragged = undefined;
+        ___cvp.pasteEvent = undefined;
     });
     document.addEventListener("click", (e) => {
         const target = e.target;
@@ -85,6 +99,6 @@ chrome.storage.sync.get({"config-premium-elements": ___cvp.getDefaultConfig()["c
         e.stopImmediatePropagation();
         e.stopPropagation();
 
-        pasteImg(img);
+        pasteImg(img, (e) => document.dispatchEvent(e));
     }, true);
 });
