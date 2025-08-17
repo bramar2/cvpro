@@ -2,7 +2,8 @@ window.___cvp = {
     getDefaultConfig: () => {
         return {
             "config-premium-elements": true,
-            "config-hide-pro-trial": true
+            "config-hide-pro-trial": true,
+            "config-remove-background": true
         };        
     }
 };

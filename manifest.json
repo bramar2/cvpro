@@ -21,7 +21,8 @@
             "js": [
                 "scripts/config.js",
                 "scripts/premium-elements.js",
-                "scripts/hide-pro-trial.js"
+                "scripts/hide-pro-trial.js",
+                "scripts/remove-background.js"
             ],
             "matches": [
                 "https://www.canva.com/design/*"
