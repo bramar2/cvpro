@@ -1,0 +1,38 @@
+{
+  "name": "cvpro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "bramar2",
+    "email": "",
+    "url": "https://bramar2.github.io"
+  },
+  "contributors": [],
+  "scripts": {
+    "clean": "if exist dist rmdir /S /Q dist",
+    "compile": "npx tsc -p tsconfig.json && npx tsc -p tsconfig.scripts.json",
+    "copy-assets": "robocopy . dist /E /XF tsconfig.json /XD src dist || exit 0",
+    "build": "npm run clean && npm run compile && npm run copy-assets",
+    "dev": "",
+    "test": ""
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.4",
+    "typescript": "^5.9.2"
+  }
+}

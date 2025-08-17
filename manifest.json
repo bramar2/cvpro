@@ -16,13 +16,21 @@
       "default_popup": "pages/action-page.html",
       "default_icon": "images/icon-16.png"
     },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "src/config.js",
+                "src/hide-pro-trial.js",
+                "src/premium-elements.js",
+                "src/remove-background.js"
+            ],
+            "matches": ["https://www.canva.com/*"]
+        }
+    ],
     "content_scripts": [
         {
             "js": [
-                "src/config.js",
-                "src/premium-elements.js",
-                "src/hide-pro-trial.js",
-                "src/remove-background.js"
+                "src/features.js"
             ],
             "matches": [
                 "https://www.canva.com/design/*"
