@@ -16,8 +16,6 @@ function saveSettings(): void {
             config[objKey] = element.checked;   
         }
     }
-    console.log("saveSettings()");
-    console.log(config);
     chrome.storage.sync.set(config);
 }
 
