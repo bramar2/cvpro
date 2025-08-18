@@ -1,4 +1,5 @@
 import { getDefaultConfig } from "./config.js";
+import { startLoading, stopLoading } from "./loading.js";
 function premiumImg(parent: HTMLElement): (HTMLImageElement | undefined) {
     let imgCnt: number = 0;
     let isPremium: boolean = false;
@@ -55,14 +56,26 @@ function pasteImg(img: HTMLImageElement, callback: PasteImgCallback): void {
     canvas.remove();
 }
 
+function observeChange(): void {
+    const uploadAnimation: (HTMLElement | null) = document.querySelector("div[role=tablist][aria-orientation=vertical] > div:nth-child(5) > button > div > div > div:nth-child(3)");
+    if(uploadAnimation) {
+        stopLoading();
+    }
+}
+
 let draggedImage: (HTMLImageElement | undefined) = undefined;
 let pasteEvent: (ClipboardEvent | undefined) = undefined;
 let pasteImmediately: boolean = false;
+let observer: MutationObserver;
 
 export function init(): void {
     chrome.storage.sync.get({"config-premium-elements": getDefaultConfig()["config-premium-elements"]}, (config: Record<string, boolean>) => {
         if(!config["config-premium-elements"]) return;
-        console.log("Initialize wohoo");
+
+        observer = new MutationObserver(observeChange);
+        observer.observe(document.body, { childList: true, subtree: true });
+
+
         document.addEventListener("dragstart", (e: DragEvent) => {
             if(!e.target) return;
 
@@ -89,7 +102,8 @@ export function init(): void {
             
             e.stopImmediatePropagation();
             e.stopPropagation();
-            
+
+            startLoading();
             if(pasteEvent === undefined) {
                 pasteImmediately = true;
             }else {
@@ -119,7 +133,8 @@ export function init(): void {
 
             e.stopImmediatePropagation();
             e.stopPropagation();
-
+            
+            startLoading();
             pasteImg(img, (e: ClipboardEvent): void => {
                 document.dispatchEvent(e);
             });

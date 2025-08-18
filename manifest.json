@@ -20,6 +20,7 @@
         {
             "resources": [
                 "src/config.js",
+                "src/loading.js",
                 "src/hide-pro-trial.js",
                 "src/premium-elements.js",
                 "src/remove-background.js"

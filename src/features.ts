@@ -1,5 +1,5 @@
 (async () => {
-    for(const url of ["src/config.js"]) {
+    for(const url of ["src/config.js", "src/loading.js"]) {
         const src = chrome.runtime.getURL(url);
         await import(src);
     }
