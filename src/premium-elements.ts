@@ -1,5 +1,5 @@
 import { getDefaultConfig } from "./config.js";
-import { startLoading, stopLoading } from "./loading.js";
+import { showOverlay, hideOverlay } from "./overlay.js";
 function premiumImg(parent: HTMLElement): (HTMLImageElement | undefined) {
     let imgCnt: number = 0;
     let isPremium: boolean = false;
@@ -53,13 +53,12 @@ function pasteImg(img: HTMLImageElement, callback: PasteImgCallback): void {
         });
         callback(pasteEvent);
     }, "image/png", 1);
-    canvas.remove();
 }
 
 function observeChange(): void {
     const uploadAnimation: (HTMLElement | null) = document.querySelector("div[role=tablist][aria-orientation=vertical] > div:nth-child(5) > button > div > div > div:nth-child(3)");
     if(uploadAnimation) {
-        stopLoading();
+        hideOverlay();
     }
 }
 
@@ -103,7 +102,7 @@ export function init(): void {
             e.stopImmediatePropagation();
             e.stopPropagation();
 
-            startLoading();
+            showOverlay();
             if(pasteEvent === undefined) {
                 pasteImmediately = true;
             }else {
@@ -134,7 +133,7 @@ export function init(): void {
             e.stopImmediatePropagation();
             e.stopPropagation();
             
-            startLoading();
+            showOverlay();
             pasteImg(img, (e: ClipboardEvent): void => {
                 document.dispatchEvent(e);
             });

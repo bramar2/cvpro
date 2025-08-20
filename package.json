@@ -26,13 +26,12 @@
   "scripts": {
     "clean": "if exist dist rmdir /S /Q dist",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p tsconfig.scripts.json",
-    "copy-assets": "robocopy . dist /E /XF tsconfig.json /XD src dist || exit 0",
-    "build": "npm run clean && npm run compile && npm run copy-assets",
-    "dev": "",
-    "test": ""
+    "copy-assets": "robocopy . dist /E /XF tsconfig.json tsconfig.scripts.json package.json package-lock.json .gitignore /XD .git src dist node_modules || exit 0",
+    "build": "npm run clean && npm run compile && npm run copy-assets"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.4",
+    "esbuild": "^0.25.9",
     "typescript": "^5.9.2"
   }
 }

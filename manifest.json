@@ -4,7 +4,8 @@
     "version": "1.0",
     "manifest_version": 3,
     "permissions": [
-        "storage"
+        "storage",
+        "unlimitedStorage"
     ],
     "icons": {
         "16": "images/icon-16.png",
@@ -19,11 +20,8 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "src/config.js",
-                "src/loading.js",
-                "src/hide-pro-trial.js",
-                "src/premium-elements.js",
-                "src/remove-background.js"
+                "pages/*.html",
+                "src/*.js"
             ],
             "matches": ["https://www.canva.com/*"]
         }
