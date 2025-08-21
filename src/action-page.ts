@@ -25,6 +25,8 @@ function loadSettings(): void {
         let key: string = sanitize(objKey);
         document.body.innerHTML += `<div class="option"><input type="checkbox" id="${key}"/><span>${key}</span></div>`;
     }
+    const height: number = 25 * Object.keys(DEFAULT_CONFIG).length;
+    document.body.style.height = height + "px";
     chrome.storage.sync.get(DEFAULT_CONFIG, (config: Record<string, boolean>) => {
         for(const [objKey, value] of Object.entries(config)) {
             const element: HTMLInputElement = document.getElementById(sanitize(objKey)) as HTMLInputElement;
